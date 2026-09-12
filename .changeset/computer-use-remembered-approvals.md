@@ -4,6 +4,8 @@
 "@executor-js/plugin-mcp": patch
 "@executor-js/api": patch
 "@executor-js/react": patch
+"@executor-js/host-mcp": patch
+"@executor-js/cloudflare": patch
 "executor": patch
 ---
 

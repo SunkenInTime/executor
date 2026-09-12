@@ -20,10 +20,9 @@ import {
   type ResumeFallbackOutcome,
 } from "@executor-js/host-mcp/tool-server";
 import { defaultMcpResource, type McpResource } from "@executor-js/host-mcp";
-import {
-  ResumeResponsePayload,
-  decodeResumeResponse,
-} from "@executor-js/host-mcp/browser-approval";
+import { decodeResumeResponse } from "@executor-js/host-mcp/browser-approval";
+
+import { ElicitationResponse } from "@executor-js/sdk";
 
 import type { IncomingPropagationHeaders, McpElicitationMode } from "./do-headers";
 import { classifyDurableObjectError, type DurableObjectFailure } from "./durable-object-errors";
@@ -206,7 +205,7 @@ const MODEL_RESUME_FORWARD_TIMEOUT_MS = 10_000;
 const MCP_STREAM_REQS_KEY_PREFIX = "__mcp_stream_reqs__:";
 const approvalResponseKey = (executionId: string) => `approval-response:${executionId}`;
 const BrowserApprovalDecisionStorage = Schema.Struct({
-  response: ResumeResponsePayload,
+  response: ElicitationResponse,
   orgWriteAccess: Schema.Literals(["allowed", "denied"]),
 });
 const decodeBrowserApprovalDecision = Schema.decodeUnknownOption(BrowserApprovalDecisionStorage);
